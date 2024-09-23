@@ -92,8 +92,32 @@ List<int> countBy(int x, int n) {
 }
 
 // Nomor 13
+// https://www.codewars.com/kata/5601409514fc93442500010b/train/dart
+bool betterThanAverage(List<int> classPoints, int yourPoints) {
+  double total = 0;
+
+  classPoints.forEach((e) => total += e);
+
+  return yourPoints >= total / classPoints.length ? true : false;
+}
+
+// Nomor 14
+// https://www.codewars.com/kata/57eae20f5500ad98e50002c5/train/dart
+String noSpace(String x) {
+  List<String> y = x.split(' ');
+  String hasil = '';
+  for (var e in y) {
+    hasil += e;
+  }
+
+  return hasil;
+}
+
+// atau
+
+String noSpace2(String s) => s.replaceAll(" ", "");
 
 // MAIN TEST //
 void main(List<String> args) {
-  print(countBy(1, 10));
+  print(noSpace('8 j 8   mBliB8g  imjB8B8  jl  B'));
 }
