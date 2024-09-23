@@ -29,6 +29,20 @@ int binToDec(bin) {
 }
 
 // Nomor 4
+// https://www.codewars.com/kata/582cb0224e56e068d800003c/train/dart
+int litres(num time) => (time * 0.5).floor();
+
+// Nomor 5
+// https://www.codewars.com/kata/57a0556c7cb1f31ab3000ad7/train/dart
+String makeUpperCase(String str) => str.toUpperCase();
+
+// Nomor 6
+// https://www.codewars.com/kata/57a0e5c372292dd76d000d7e/train/dart
+String repeatString(int n, String s) => s * n;
+
+
 
 // Coba
-void main(List<String> args) {}
+void main(List<String> args) {
+  print(repeatString(6, 'I'));
+}
