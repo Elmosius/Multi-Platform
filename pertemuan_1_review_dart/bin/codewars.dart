@@ -51,6 +51,7 @@ double getVolumeOfCuboid(
     (length * width * height);
 
 // Nomor 9
+// https://www.codewars.com/kata/5ae62fcf252e66d44d00008e
 int expressionMatter(a, b, c) {
   int total = a * (b + c);
 
@@ -62,7 +63,37 @@ int expressionMatter(a, b, c) {
   return total;
 }
 
+// Nomor 10
+// https://www.codewars.com/kata/515e271a311df0350d00000f/train/dart
+int squareSum(List numbers) {
+  num total = 0;
+  for (var e in numbers) {
+    total += pow(e, 2);
+    print(total);
+  }
+
+  return total.toInt();
+}
+
+// Nomor 11
+// https://www.codewars.com/kata/53da6d8d112bd1a0dc00008b/train/dart
+List<int> reverseList(List<int> list) => list.reversed.toList();
+
+// Nomor 12
+// https://www.codewars.com/kata/5513795bd3fafb56c200049e/train/dart
+List<int> countBy(int x, int n) {
+  List<int> hasil = [];
+
+  for (var i = x; i <= x * n; i += x) {
+    hasil.add(i);
+  }
+
+  return hasil;
+}
+
+// Nomor 13
+
 // MAIN TEST //
 void main(List<String> args) {
-  print(expressionMatter(1, 6, 1));
+  print(countBy(1, 10));
 }
