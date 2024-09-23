@@ -40,9 +40,29 @@ String makeUpperCase(String str) => str.toUpperCase();
 // https://www.codewars.com/kata/57a0e5c372292dd76d000d7e/train/dart
 String repeatString(int n, String s) => s * n;
 
+// Nomor 7
+// https://www.codewars.com/kata/57a4d500e298a7952100035d/train/dart
+int hexToDec(String hexString) => int.parse(hexString, radix: 16);
 
+// Nomor 8
+// https://www.codewars.com/kata/58261acb22be6e2ed800003a/train/dart
+double getVolumeOfCuboid(
+        final double length, final double width, final double height) =>
+    (length * width * height);
 
-// Coba
+// Nomor 9
+int expressionMatter(a, b, c) {
+  int total = a * (b + c);
+
+  if (total <= a * b * c) total = a * b * c;
+  if (total <= a + b * c) total = a + b * c;
+  if (total <= (a + b) * c) total = (a + b) * c;
+  if (total <= a + b + c) total = (a + b + c);
+
+  return total;
+}
+
+// MAIN TEST //
 void main(List<String> args) {
-  print(repeatString(6, 'I'));
+  print(expressionMatter(1, 6, 1));
 }
