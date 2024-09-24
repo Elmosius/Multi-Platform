@@ -1,7 +1,7 @@
 import 'person.dart';
 
 class Student extends Person {
-  String studentId = 'No ID';
+  final String studentId;
 
-  Student({required super.name, required super.age});
+  Student(this.studentId, {required super.name, required super.age});
 }
