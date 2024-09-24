@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 // Nomor 1
@@ -117,7 +118,54 @@ String noSpace(String x) {
 
 String noSpace2(String s) => s.replaceAll(" ", "");
 
+// Nomor 15
+// https://www.codewars.com/kata/5a023c426975981341000014/train/dart
+int otherAngle(int a, int b) => 180 - a - b;
+
+// Nomor 16
+// https://www.codewars.com/kata/643af0fa9fa6c406b47c5399/train/dart
+int quadrant(int x, int y) {
+  if (x > 0 && y > 0) {
+    return 1;
+  } else if (x < 0 && y < 0) {
+    return 3;
+  } else if (x > 0 && y < 0) {
+    return 4;
+  } else {
+    return 2;
+  }
+}
+
+// atau
+int quadrant2(int x, int y) => x > 0 ? (y > 0 ? 1 : 4) : (y > 0 ? 2 : 3);
+
+// Nomor 17
+// https://www.codewars.com/kata/598d91785d4ce3ec4f000018/train/dart
+List<int> wordValue(List<String> arr) {
+  Map<String, int> abjad = {};
+  for (int i = 0; i < 26; i++) {
+    String letter = String.fromCharCode(97 + i);
+    abjad[letter] = i + 1;
+  }
+
+  List<int> hasil = [];
+  int j = 1;
+
+  for (var e in arr) {
+    int total = 0;
+    for (int i = 0; i < e.length; i++) {
+      if (e[i] != ' ') {
+        total += abjad[e[i].toLowerCase()]! * j;
+      }
+    }
+    j++;
+    hasil.add(total);
+  }
+
+  return hasil;
+}
+
 // MAIN TEST //
 void main(List<String> args) {
-  print(noSpace('8 j 8   mBliB8g  imjB8B8  jl  B'));
+  print(wordValue(["coding", "better pizza", "i got this too"]));
 }
