@@ -2,7 +2,7 @@
 Selamat datang di repositori saya! Di sini, Anda akan menemukan rekap belajar saya dalam mata kuliah peminatan Multi Platform menggunakan Flutter.
 
 ## 📚 Daftar Isi
-- 📝 Pertemuan 1 - Review Dart Awal
+- 📝 Pertemuan 1,2 - Review Dart Awal (Dasar, OOP)
 - 🔜 Coming Soon
 
 
