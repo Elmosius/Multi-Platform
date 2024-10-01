@@ -3,6 +3,7 @@ Selamat datang di repositori saya! Di sini, Anda akan menemukan rekap belajar sa
 
 ## 📚 Daftar Isi
 - 📝 Pertemuan 1,2 - Review Dart Awal (Dasar, OOP)
+- 🧱 Pertemuan 3 - Pengenalan Stuktur Flutter
 - 🔜 Coming Soon
 
 
