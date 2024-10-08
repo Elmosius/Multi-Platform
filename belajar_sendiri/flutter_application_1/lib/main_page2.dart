@@ -85,6 +85,12 @@ class _MainPage2State extends State<MainPage2> {
                 fontSize: 20,
               ),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Go back'),
+            )
           ],
         ),
       ),
