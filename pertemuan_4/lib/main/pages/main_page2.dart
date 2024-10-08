@@ -23,7 +23,7 @@ class MainPage2 extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: students.map(e) => StudentWidget(e).toList(),
+        children: students.map((e) => StudentWidget(students: e)).toList(),
       ),
     );
   }

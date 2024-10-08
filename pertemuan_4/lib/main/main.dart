@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pertemuan_4/main/pages/main_page.dart';
 import 'package:pertemuan_4/main/pages/main_page2.dart';
 
 

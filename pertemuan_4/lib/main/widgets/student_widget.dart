@@ -30,13 +30,9 @@ class StudentWidget extends StatelessWidget {
             Text(
               student.studentId,
             ),
-            Column(
-              children: [
-                Text(
-                  student.name,
-                ),
-              ],
-            )
+            Text(
+              student.name,
+            ),
           ],
         )
       ],
