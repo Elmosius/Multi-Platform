@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pertemuan_4/class/student.dart';
-import 'package:pertemuan_4/class/student_widget.dart';
+import 'package:pertemuan_4/main/widgets/student_widget.dart';
 
 class MainPage2 extends StatelessWidget {
   const MainPage2({super.key});
@@ -23,7 +23,7 @@ class MainPage2 extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        children: students.map((e) => StudentWidget(students: e)).toList(),
+        children: students.map((e) => StudentWidget(student: e)).toList(),
       ),
     );
   }
