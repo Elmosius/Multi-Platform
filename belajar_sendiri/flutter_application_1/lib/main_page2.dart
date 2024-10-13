@@ -1,9 +1,12 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/domain/class/product.dart';
+import 'package:flutter_application_1/second_page.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
@@ -111,7 +114,6 @@ class _MainPage2State extends State<MainPage2> {
   //                 ),
   //               ),
   //             ),
-
   //             onChanged: (value) => setState(() {}),
   //           ),
   //           const SizedBox(
@@ -268,29 +270,232 @@ class _MainPage2State extends State<MainPage2> {
   // }
 
   // Gesture Detector
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: Center(
+  //       child: GestureDetector(
+  //         onTap: () => log('tap!'),
+  //         onTapDown: (e) =>
+  //             log('Top Down! ${e.globalPosition} ${e.localPosition} ${e.kind}'),
+  //         onTapCancel: () => log('cancel!'),
+  //         child: Container(
+  //           width: 100,
+  //           height: 100,
+  //           decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(10),
+  //             gradient: const LinearGradient(
+  //               begin: Alignment.topLeft,
+  //               end: Alignment.bottomRight,
+  //               colors: [Colors.red, Colors.blue],
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // NAVIGATION
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: const Center(child: Text('Main Page 2')),
+  //     ),
+  //     body: Center(
+  //         child: ElevatedButton(
+  //             onPressed: () {
+  //               Navigator.pushReplacement(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                       builder: (context) => const SecondPage()));
+  //             },
+  //             child: const Text('Go to Second Page'))),
+  //   );
+  // }
+
+  // ABOUT DIALOG | ALERT DIALOG | SIMPLE DIALOG
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: const Center(child: Text('Main Page 2')),
+  //     ),
+  //     body: Center(
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           ElevatedButton(
+  //               onPressed: () {
+  //                 showDialog(
+  //                   context: context,
+  //                   builder: (context) => AboutDialog(
+  //                     applicationIcon: Icon(MdiIcons.information),
+  //                     applicationName: 'Mencoba About Dialog',
+  //                     applicationVersion: '1.0.0',
+  //                     applicationLegalese: 'Testing aplication legalese',
+  //                   ),
+  //                 );
+  //               },
+  //               child: const Text('About')),
+  //           ElevatedButton(
+  //             onPressed: () {
+  //               showDialog<String>(
+  //                 context: context,
+  //                 builder: (context) => AlertDialog(
+  //                   title: const Text('Alert Dialog'),
+  //                   content: const Text('Mencoba Alert Dialog '),
+  //                   actions: [
+  //                     TextButton(
+  //                         onPressed: () {
+  //                           Navigator.pop(context, 'Ok');
+  //                         },
+  //                         child: const Text('Ok')),
+  //                     TextButton(
+  //                       onPressed: () {
+  //                         Navigator.pop(context, 'Cancel');
+  //                       },
+  //                       child: const Text('Cancel'),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ).then((e) => log(e ?? 'No Return'));
+  //             },
+  //             child: const Text('Warning!'),
+  //           ),
+  //           ElevatedButton(
+  //               onPressed: () {
+  //                 showDialog(
+  //                   context: context,
+  //                   builder: (context) => const SimpleDialog(
+  //                     title: Text('THis is Simple Dialog'),
+  //                   ),
+  //                 );
+  //               },
+  //               child: const Text('Simple Dialog'))
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // IMAGE PICKER
+  // XFile? image;
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: Center(
+  //       child: Padding(
+  //         padding: const EdgeInsets.all(8.0),
+  //         child: ListView(
+  //           children: [
+  //             const SizedBox(
+  //               height: 50,
+  //             ),
+  //             Container(
+  //               width: double.infinity,
+  //               height: 100,
+  //               decoration: BoxDecoration(
+  //                   color: image == null ? Colors.grey : null,
+  //                   image: image != null
+  //                       ? DecorationImage(image: FileImage(File(image!.path)))
+  //                       : null),
+  //             ),
+  //             const SizedBox(
+  //               height: 10,
+  //             ),
+  //             ElevatedButton(
+  //               onPressed: () async {
+  //                 ImagePicker()
+  //                     .pickImage(
+  //                         source: ImageSource.camera,
+  //                         preferredCameraDevice: CameraDevice.front)
+  //                     .then(
+  //                   (e) {
+  //                     setState(
+  //                       () {
+  //                         image = e;
+  //                       },
+  //                     );
+  //                   },
+  //                 );
+  //               },
+  //               child: const Text('Pick Image'),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // DATE TIME & PICKER
+  DateTime? selectedDateTime;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: GestureDetector(
-          onTap: () => log('tap!'),
-          onTapDown: (e) =>
-              log('Top Down! ${e.globalPosition} ${e.localPosition} ${e.kind}'),
-          onTapCancel: () => log('cancel!'),
-          child: Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.red, Colors.blue],
-              ),
-            ),
-          ),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.amber.shade100,
+          title: const Text('Date & Time Picker Demo'),
         ),
-      ),
-    );
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(selectedDateTime != null
+                  ? selectedDateTime.toString()
+                  : 'This is your selected date and time'),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (e) => DatePickerDialog(
+                        firstDate:
+                            DateTime.now().subtract(const Duration(days: 30)),
+                        lastDate: DateTime.now()),
+                  ).then((e) {
+                    setState(() {
+                      if (e != null) {
+                        selectedDateTime == null
+                            ? selectedDateTime = e
+                            : selectedDateTime = selectedDateTime!.copyWith(
+                                day: e.day, month: e.month, year: e.year);
+                      }
+                    });
+                  });
+                },
+                child: const Text('Pick a date'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (e) => TimePickerDialog(
+                      initialTime: TimeOfDay.now(),
+                    ),
+                  ).then((e) {
+                    if (e != null) {
+                      setState(() {
+                        selectedDateTime != null
+                            ? selectedDateTime = selectedDateTime!.copyWith(
+                                hour: e.hour,
+                                minute: e.minute,
+                              )
+                            : selectedDateTime = DateTime.now().copyWith(
+                                hour: e.hour,
+                                minute: e.minute,
+                              );
+                      });
+                    }
+                  });
+                },
+                child: const Text('Pick a time'),
+              ),
+            ],
+          ),
+        ));
   }
 }
