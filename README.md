@@ -5,7 +5,8 @@ Selamat datang di repositori saya! Di sini, Anda akan menemukan rekap belajar sa
 - 📝 Pertemuan 1,2 - Review Dart Awal (Dasar, OOP)
 - 🧱 Pertemuan 3 - Pengenalan Stuktur Flutter
 - 🔢 Pertemuan 4 - Widget Dasar (Container, Text, SizeBox, Column, Row, Padding, Stack, Text Field) + Navigator
-- 🖼️ Pertemuan 5 - Single Chill Scroll View, Build, List view, Gesture Detector, Dialog, Image Picker, Date Time Picker
+- 🖼️ Pertemuan 5 - Single Chill Scroll View, Build, List view, Gesture Detector, Dialog,
+  Image Picker, Date Time Picker, Custom Statefull Widget, Extension
 - 🔜 Coming Soon
 
 
