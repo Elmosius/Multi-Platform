@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/domain/class/product.dart';
@@ -18,9 +19,8 @@ class MainPage2 extends StatefulWidget {
 }
 
 class _MainPage2State extends State<MainPage2> {
-  int number = 0;
-
   // Nambah angka
+  // int number = 0;
   // @override
   // Widget build(BuildContext context) {
   //   return Scaffold(
@@ -500,84 +500,158 @@ class _MainPage2State extends State<MainPage2> {
   // }
 
   // SHARED PREFERENCES & DOUBLE QUESTION MARK OPERATOR
+  // TextEditingController controller = TextEditingController(text: '');
+  // bool isOn = false;
+  // void save() async {
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   pref.setString('name', controller.text);
+  //   pref.setBool('ison', isOn);
+  // }
+  // Future<String> getName() async {
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   return pref.getString('name') ?? 'No Name';
+  // }
+  // Future<bool> getBool() async {
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   return pref.getBool('ison') ?? false;
+  // }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: const Center(child: Text('Shared References')),
+  //     ),
+  //     body: Center(
+  //       child: Column(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           SizedBox(
+  //             width: 300,
+  //             child: TextField(
+  //               controller: controller,
+  //               decoration: const InputDecoration(
+  //                 border: OutlineInputBorder(),
+  //                 labelText: 'Enter your name',
+  //               ),
+  //             ),
+  //           ),
+  //           const SizedBox(
+  //             height: 20,
+  //           ),
+  //           Switch(
+  //             value: isOn,
+  //             onChanged: (e) {
+  //               setState(() {
+  //                 isOn = e;
+  //               });
+  //             },
+  //           ),
+  //           const SizedBox(
+  //             height: 50,
+  //           ),
+  //           Row(
+  //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //             children: [
+  //               ElevatedButton(
+  //                   onPressed: () {
+  //                     save();
+  //                   },
+  //                   child: const Text('Save')),
+  //               ElevatedButton(
+  //                   onPressed: () {
+  //                     getName().then(
+  //                       (e) {
+  //                         controller.text = e;
+  //                         setState(() {});
+  //                       },
+  //                     );
+  //                     getBool().then((e) {
+  //                       isOn = e;
+  //                       setState(() {});
+  //                     });
+  //                   },
+  //                   child: const Text('Load'))
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  TextEditingController controller = TextEditingController(text: '');
+  // ISOLATE
+  int number = 0;
   bool isOn = false;
-
-  void save() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    pref.setString('name', controller.text);
-    pref.setBool('ison', isOn);
+  String hasil = 'Kosong';
+  void heavyProcess(int number) {
+    for (int i = 0; i < number; i++) {
+      number = number;
+    }
+    log('DONE');
   }
 
-  Future<String> getName() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    return pref.getString('name') ?? 'No Name';
+  @override
+  void initState() {
+    super.initState();
+    // Isolate.spawn(heavyProcess, 100000000);
   }
 
-  Future<bool> getBool() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    return pref.getBool('ison') ?? false;
+  String heavyProcess2(int number) {
+    int result = 0;
+    for (int i = 0; i < number; i++) {
+      result += number;
+    }
+    return result.toString();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text('Shared References')),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 300,
-              child: TextField(
-                controller: controller,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter your name',
-                ),
+            Text(
+              '$number',
+              style: const TextStyle(
+                fontFamily: 'NotoSansJp',
+                fontSize: 20,
               ),
             ),
             const SizedBox(
               height: 20,
             ),
-            Switch(
-              value: isOn,
-              onChanged: (e) {
-                setState(() {
-                  isOn = e;
-                });
-              },
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    number += 1;
+                  });
+                },
+                child: const Text('+')),
+            const SizedBox(
+              height: 40,
+            ),
+            Text(
+              'Result: $hasil',
+              style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      save();
-                    },
-                    child: const Text('Save')),
-                ElevatedButton(
-                    onPressed: () {
-                      getName().then(
-                        (e) {
-                          controller.text = e;
-                          setState(() {});
-                        },
-                      );
-                      getBool().then((e) {
-                        isOn = e;
-                        setState(() {});
-                      });
-                    },
-                    child: const Text('Load'))
-              ],
-            ),
+            ElevatedButton(
+                onPressed: isOn
+                    ? null
+                    : () async {
+                        setState(() {
+                          isOn = !isOn;
+                        });
+                        hasil =
+                            await compute<int, String>(heavyProcess2, 10000000);
+                        setState(() {
+                          isOn = !isOn;
+                        });
+                      },
+                child: const Text('Heavy Process')),
           ],
         ),
       ),
