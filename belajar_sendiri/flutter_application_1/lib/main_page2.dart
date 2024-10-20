@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_application_1/domain/class/product.dart';
 import 'package:flutter_application_1/second_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 class MainPage2 extends StatefulWidget {
@@ -431,71 +431,156 @@ class _MainPage2State extends State<MainPage2> {
   // }
 
   // DATE TIME & PICKER
-  DateTime? selectedDateTime;
+  // DateTime? selectedDateTime;
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //       backgroundColor: Colors.white,
+  //       appBar: AppBar(
+  //         backgroundColor: Colors.amber.shade100,
+  //         title: const Text('Date & Time Picker Demo'),
+  //       ),
+  //       body: Center(
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             Text(selectedDateTime != null
+  //                 ? selectedDateTime.toString()
+  //                 : 'This is your selected date and time'),
+  //             const SizedBox(height: 20),
+  //             ElevatedButton(
+  //               onPressed: () {
+  //                 showDialog(
+  //                   context: context,
+  //                   builder: (e) => DatePickerDialog(
+  //                       firstDate:
+  //                           DateTime.now().subtract(const Duration(days: 30)),
+  //                       lastDate: DateTime.now()),
+  //                 ).then((e) {
+  //                   setState(() {
+  //                     if (e != null) {
+  //                       selectedDateTime == null
+  //                           ? selectedDateTime = e
+  //                           : selectedDateTime = selectedDateTime!.copyWith(
+  //                               day: e.day, month: e.month, year: e.year);
+  //                     }
+  //                   });
+  //                 });
+  //               },
+  //               child: const Text('Pick a date'),
+  //             ),
+  //             ElevatedButton(
+  //               onPressed: () {
+  //                 showDialog(
+  //                   context: context,
+  //                   builder: (e) => TimePickerDialog(
+  //                     initialTime: TimeOfDay.now(),
+  //                   ),
+  //                 ).then((e) {
+  //                   if (e != null) {
+  //                     setState(() {
+  //                       selectedDateTime != null
+  //                           ? selectedDateTime = selectedDateTime!.copyWith(
+  //                               hour: e.hour,
+  //                               minute: e.minute,
+  //                             )
+  //                           : selectedDateTime = DateTime.now().copyWith(
+  //                               hour: e.hour,
+  //                               minute: e.minute,
+  //                             );
+  //                     });
+  //                   }
+  //                 });
+  //               },
+  //               child: const Text('Pick a time'),
+  //             ),
+  //           ],
+  //         ),
+  //       ));
+  // }
+
+  // SHARED PREFERENCES & DOUBLE QUESTION MARK OPERATOR
+
+  TextEditingController controller = TextEditingController(text: '');
+  bool isOn = false;
+
+  void save() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('name', controller.text);
+    pref.setBool('ison', isOn);
+  }
+
+  Future<String> getName() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getString('name') ?? 'No Name';
+  }
+
+  Future<bool> getBool() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getBool('ison') ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.amber.shade100,
-          title: const Text('Date & Time Picker Demo'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(selectedDateTime != null
-                  ? selectedDateTime.toString()
-                  : 'This is your selected date and time'),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (e) => DatePickerDialog(
-                        firstDate:
-                            DateTime.now().subtract(const Duration(days: 30)),
-                        lastDate: DateTime.now()),
-                  ).then((e) {
-                    setState(() {
-                      if (e != null) {
-                        selectedDateTime == null
-                            ? selectedDateTime = e
-                            : selectedDateTime = selectedDateTime!.copyWith(
-                                day: e.day, month: e.month, year: e.year);
-                      }
-                    });
-                  });
-                },
-                child: const Text('Pick a date'),
+      appBar: AppBar(
+        title: const Center(child: Text('Shared References')),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 300,
+              child: TextField(
+                controller: controller,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter your name',
+                ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (e) => TimePickerDialog(
-                      initialTime: TimeOfDay.now(),
-                    ),
-                  ).then((e) {
-                    if (e != null) {
-                      setState(() {
-                        selectedDateTime != null
-                            ? selectedDateTime = selectedDateTime!.copyWith(
-                                hour: e.hour,
-                                minute: e.minute,
-                              )
-                            : selectedDateTime = DateTime.now().copyWith(
-                                hour: e.hour,
-                                minute: e.minute,
-                              );
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Switch(
+              value: isOn,
+              onChanged: (e) {
+                setState(() {
+                  isOn = e;
+                });
+              },
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      save();
+                    },
+                    child: const Text('Save')),
+                ElevatedButton(
+                    onPressed: () {
+                      getName().then(
+                        (e) {
+                          controller.text = e;
+                          setState(() {});
+                        },
+                      );
+                      getBool().then((e) {
+                        isOn = e;
+                        setState(() {});
                       });
-                    }
-                  });
-                },
-                child: const Text('Pick a time'),
-              ),
-            ],
-          ),
-        ));
+                    },
+                    child: const Text('Load'))
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -397,21 +397,61 @@ class MainPage extends StatelessWidget {
   //     );
   // }
 
-  ////// Icon Widget
+  //// Icon Widget
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: const Text('Icon Widget'),
+  //       backgroundColor: Colors.blue,
+  //     ),
+  //     body: Center(
+  //       child: Icon(
+  //         MdiIcons.googleDownasaur,
+  //         size: 75,
+  //         color: Colors.black,
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  ////// Responsive App - MediaQuery
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Icon Widget'),
+        title: const Text('MediaQuery'),
         backgroundColor: Colors.blue,
       ),
       body: Center(
-        child: Icon(
-          MdiIcons.googleDownasaur,
-          size: 75,
-          color: Colors.black,
-        ),
+        child: MediaQuery.of(context).orientation == Orientation.portrait
+            ? Column(
+                children: generateContainers,
+              )
+            : Row(
+                children: generateContainers,
+              ),
       ),
     );
+  }
+
+  List<Widget> get generateContainers {
+    return [
+      Container(
+        color: Colors.black,
+        width: 100,
+        height: 100,
+      ),
+      Container(
+        color: Colors.red,
+        width: 100,
+        height: 100,
+      ),
+      Container(
+        color: Colors.blue,
+        width: 100,
+        height: 100,
+      ),
+    ];
   }
 }
