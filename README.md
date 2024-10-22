@@ -7,6 +7,7 @@ Selamat datang di repositori saya! Di sini, Anda akan menemukan rekap belajar sa
 - 🔢 Pertemuan 4 - Widget Dasar (Container, Text, SizeBox, Column, Row, Padding, Stack, Text Field) + Navigator
 - 🖼️ Pertemuan 5 - Single Chill Scroll View, Build, List view, Gesture Detector, Dialog,
   Image Picker, Date Time Picker, Custom Statefull Widget, Extension
+- 🔥 Pertemuan 6 - Isolate, API (Dio), Navigation (Go Router), State Management (Riverpod)
 - 🔜 Coming Soon
 
 
