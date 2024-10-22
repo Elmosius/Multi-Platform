@@ -1,5 +1,5 @@
 class Person {
-  final int? id; // id tetap nullable karena mungkin tidak selalu tersedia
+  final int? id; 
   final String? firstName;
   final String? lastName;
   final String? email;
@@ -21,7 +21,7 @@ class Person {
     return Person(
       id: (json['id'] is String)
           ? int.tryParse(json['id'])
-          : json['id'], // Konversi id jika berbentuk String
+          : json['id'], 
       firstName: json['first_name'],
       lastName: json['last_name'],
       email: json['email'],
