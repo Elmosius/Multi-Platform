@@ -1,21 +1,19 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:pertemuan_6/kuis/person.dart';
+import 'package:pertemuan_6/kuis/services.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  TextEditingController idController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController jobController = TextEditingController();
-
-  Map<int, String> users = {};
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController jobController = TextEditingController();
+  final ApiService apiService = ApiService();
 
   Future<void> searchUser() async {
     String id = idController.text;
@@ -24,14 +22,10 @@ class _MainPageState extends State<MainPage> {
       return;
     }
 
-    final response =
-        await http.get(Uri.parse('https://reqres.in/api/users/$id'));
-
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body)['data'];
+    Person? person = await apiService.searchUser(id);
+    if (person != null) {
       _showDialog('User Found',
-          'ID: ${data['id']}\nName: ${data['first_name']} ${data['last_name']}\nEmail: ${data['email']}');
-
+          'ID: ${person.id}\nName: ${person.firstName} ${person.lastName}\nEmail: ${person.email}');
       idController.clear();
     } else {
       _showDialog('Error', 'User not found');
@@ -48,22 +42,10 @@ class _MainPageState extends State<MainPage> {
       return;
     }
 
-    final response = await http.post(
-      Uri.parse('https://reqres.in/api/users'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        'name': name,
-        'job': job,
-      }),
-    );
-
-    if (response.statusCode == 201) {
-      var data = jsonDecode(response.body);
+    Person? person = await apiService.createUser(name, job);
+    if (person != null) {
       _showDialog('User Created',
-          'Name: ${data['name']}\nJob: ${data['job']}\nID: ${data['id']}\nCreated at: ${data['createdAt']}');
-
+          'Name: ${person.name}\nJob: ${person.job}\nID: ${person.id}\nCreated at: ${person.createdAt}');
       nameController.clear();
       jobController.clear();
     } else {
@@ -119,6 +101,7 @@ class _MainPageState extends State<MainPage> {
                   labelText: 'Name',
                   border: OutlineInputBorder(),
                 ),
+                keyboardType: TextInputType.name,
               ),
               const SizedBox(height: 20),
               TextField(
@@ -127,6 +110,7 @@ class _MainPageState extends State<MainPage> {
                   labelText: 'Job',
                   border: OutlineInputBorder(),
                 ),
+                keyboardType: TextInputType.text,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
