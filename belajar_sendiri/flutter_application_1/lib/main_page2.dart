@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'dart:isolate';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -593,7 +594,7 @@ class _MainPage2State extends State<MainPage2> {
   @override
   void initState() {
     super.initState();
-    // Isolate.spawn(heavyProcess, 100000000);
+    Isolate.spawn(heavyProcess, 100000000);
   }
 
   String heavyProcess2(int number) {
