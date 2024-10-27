@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rived_pod_state_management/part1/second_page.dart';
+import 'package:rived_pod_state_management/part1-ref/providers.dart';
+import 'package:rived_pod_state_management/part1-ref/second_page.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+class MainPage extends ConsumerWidget {
+  const MainPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Main Page'),
@@ -16,7 +18,7 @@ class MainPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'text',
+              ref.watch(greetingProvider),
               style: GoogleFonts.poppins(fontSize: 25),
             ),
             ElevatedButton(
