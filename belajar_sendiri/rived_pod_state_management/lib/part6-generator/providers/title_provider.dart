@@ -6,5 +6,4 @@ part 'title_provider.g.dart';
 @riverpod
 String title(Ref ref) => 'Riverpod Generator Demo';
 
-
 // dart run build_runner  watch -d
