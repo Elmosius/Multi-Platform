@@ -9,6 +9,7 @@ Selamat datang di repositori saya! Di sini, Anda akan menemukan rekap belajar sa
   Image Picker, Date Time Picker, Custom Statefull Widget, Extension
 - 🔥 Pertemuan 6 - Isolate, API (Dio), Navigation (Go Router), State Management (Riverpod)
 - 📄 Pertemuan 7 - Test (UTS)
+- 🪨 Pertemuan 8 - SOLID Principle
 - 🔜 Coming Soon
 
 
