@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.blue,
         title: const Text('Main Page'),
       ),
-      body: Center(
+      body: Center( 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
