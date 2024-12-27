@@ -10,7 +10,7 @@ Selamat datang di repositori saya! Di sini, Anda akan menemukan rekap belajar sa
 - 🔥 Pertemuan 6 - Isolate, API (Dio), Navigation (Go Router), State Management (Riverpod)
 - 📄 Pertemuan 7 - Test (UTS)
 - 🪨 Pertemuan 8 - SOLID Principle
-- 🔜 Coming Soon
+- 🍉 Project - [Kenyangin Aja](https://github.com/Elmosius/Kenyangin-Aja)
 
 
 Dalam repositori ini, Anda akan menemukan semua kode dan dokumen yang saya kerjakan selama proses belajar. Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk menghubungi saya.
